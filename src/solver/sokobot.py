@@ -74,7 +74,7 @@ class SokoBot:
         # 1. Call the precomputation here
         distances = self.precompute_distances(goals, walls)
 
-        start_state = (player, tuple(crates))
+        start_state = (player, tuple(sorted(crates)))
         frontier = []
         heapq.heapify(frontier)
         visited = set()
@@ -111,7 +111,7 @@ class SokoBot:
                     next_crates.remove(next_player)
                     next_crates.add(crate_target)
 
-                next_state = (next_player, tuple(next_crates))
+                next_state = (next_player, tuple(sorted(next_crates)))
                 if next_state not in visited:
                     visited.add(next_state)
                     # 3. Update the loop's heuristic call
